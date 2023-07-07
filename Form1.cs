@@ -53,6 +53,9 @@ namespace MarioPicrossRipper
 
                 offset += 32;
             }
+
+            DrawThePuzzle();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
