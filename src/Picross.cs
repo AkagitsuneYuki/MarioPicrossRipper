@@ -13,7 +13,15 @@ namespace MarioPicrossRipper
         {
             get { return puzzleData; }
         }
+        public byte Width
+        {
+            get { return width; }
+        }
 
+        public byte Height
+        { 
+            get { return height; }
+        }
         public Picross(byte[] data)
         {
             if(data.Length != 32)   //all picross puzzles must be 32 bytes
