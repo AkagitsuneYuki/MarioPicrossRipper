@@ -22,36 +22,47 @@ namespace MarioPicrossRipper
             }
 
             //index 30 is the width of the puzzle, it must be 5, 10, or 15
-            if(data[30] != 5)   //this is pretty sloppy but it'll do for now
-            {
-                if(data[30] != 10)
-                {
-                    if (data[30] != 15)
-                    {
-                        throw new ArgumentException("Invalid picross dimensions!");
-                    }
-                }
+            if (!IsValidSize(data[30])){
+                throw new ArgumentException("Invalid picross dimensions!");
             }
 
+            DecodePuzzle(data);
+        }
+
+        private bool IsValidSize(int size)
+        {
+            if(size % 5 == 0)
+            {
+                int divisor = size / 5;
+
+                if (divisor >= 1 && divisor <= 3)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private void DecodePuzzle(byte[] data)
+        {
             //the puzzle matrix is 240 bytes in game, though most are unused
             puzzleData = new byte[240];
 
-            for (int i = 0; i < 30; i++) //for every byte
+            for (int byteIndex = 0; byteIndex < 30; byteIndex++) //for every byte
             {
-                byte dataByte = data[i];
-                //Console.WriteLine(dataByte);
+                byte dataByte = data[byteIndex];
 
                 if (dataByte != 0)   //don't waste time working on the bytes that are all 0
                 {
-                    for (int n = 0; n < 8; n++)  //for every bit of the byte
+                    for (int bits = 0; bits < 8; bits++)  //for every bit of the byte
                     {
-                        //each bit gets its own byte                                    //the byte is shifted left by n bits
-                        puzzleData[n + i * 8] = (byte)(((dataByte << n) & 0xff) >> 7);  //then and it with 255 to remove the unused bits
-                                                                                        //finally shift the byte right by 7 to get 1 or 0
+                        //each bit gets its own byte                                                    //the byte is shifted left by n bits
+                        puzzleData[bits + byteIndex * 8] = (byte)(((dataByte << bits) & 0xff) >> 7);    //then and it with 255 to remove the unused bits
+                                                                                                        //finally shift the byte right by 7 to get 1 or 0
                     }
                 }
             }
-            width  = data[30];
+            width = data[30];
             height = data[31];
         }
 
