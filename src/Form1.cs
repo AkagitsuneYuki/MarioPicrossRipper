@@ -10,12 +10,12 @@ namespace MarioPicrossRipper
         public Form1()
         {
             InitializeComponent();
-            textBox1.Text = trackBar1.Value.ToString();
+            indexTextBox.Text = puzzleIndexBar.Value.ToString();
         }
 
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        private void OpenRomDialogOk(object sender, CancelEventArgs e)
         {
-            byte[] buffer = File.ReadAllBytes(openFileDialog1.FileName);
+            byte[] buffer = File.ReadAllBytes(openRomDialog.FileName);
             byte[] refrenceData = { 0xF3, 0xC3, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0xF0, 0x40, 0xCB, 0x7F, 0xC8, 0x21, 0x39, 0xC3 };
 
             for(int i = 0; i < refrenceData.Length; i++)
@@ -58,20 +58,20 @@ namespace MarioPicrossRipper
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void OpenRomButtonClick(object sender, EventArgs e)
         {
-            openFileDialog1.Filter = "Gameboy ROMS (*.gb)|*.gb";
-            openFileDialog1.Title = "Select Mario Picross ROM";
-            openFileDialog1.FilterIndex = 0;
-            openFileDialog1.RestoreDirectory = true;
-            openFileDialog1.FileName = "";
+            openRomDialog.Filter = "Gameboy ROMS (*.gb)|*.gb";
+            openRomDialog.Title = "Select Mario Picross ROM";
+            openRomDialog.FilterIndex = 0;
+            openRomDialog.RestoreDirectory = true;
+            openRomDialog.FileName = "";
 
-            openFileDialog1.ShowDialog();
+            openRomDialog.ShowDialog();
         }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
+        private void PuzzleIndexBarScroll(object sender, EventArgs e)
         {
-            textBox1.Text = trackBar1.Value.ToString();
+            indexTextBox.Text = puzzleIndexBar.Value.ToString();
             DrawThePuzzle();
         }
 
@@ -79,12 +79,12 @@ namespace MarioPicrossRipper
         {
             if(Program.puzzles.Count != 0)
             {
-                int puzzleToDraw = trackBar1.Value;
+                int puzzleToDraw = puzzleIndexBar.Value;
 
                 PuzzleDrawer draw = new PuzzleDrawer();
                 try
                 {
-                    pictureBox1.Image = draw.PuzzleToBitmap(Program.puzzles[puzzleToDraw]);
+                    puzzleImageBox.Image = draw.PuzzleToBitmap(Program.puzzles[puzzleToDraw]);
                 }
                 catch (Exception ex)
                 {
