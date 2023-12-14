@@ -62,7 +62,7 @@
             this.puzzleImageBox.Margin = new System.Windows.Forms.Padding(2);
             this.puzzleImageBox.Name = "puzzleImageBox";
             this.puzzleImageBox.Size = new System.Drawing.Size(291, 267);
-            this.puzzleImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.puzzleImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.puzzleImageBox.TabIndex = 1;
             this.puzzleImageBox.TabStop = false;
             // 
