@@ -30,7 +30,7 @@
         {
             this.openRomDialog = new System.Windows.Forms.OpenFileDialog();
             this.openRomButton = new System.Windows.Forms.Button();
-            this.puzzleImageBox = new System.Windows.Forms.PictureBox();
+            this.puzzleImageBox = new PixelPerfectPictureBox();
             this.puzzleIndexBar = new System.Windows.Forms.TrackBar();
             this.indexTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.puzzleImageBox)).BeginInit();
@@ -62,7 +62,7 @@
             this.puzzleImageBox.Margin = new System.Windows.Forms.Padding(2);
             this.puzzleImageBox.Name = "puzzleImageBox";
             this.puzzleImageBox.Size = new System.Drawing.Size(291, 267);
-            this.puzzleImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.puzzleImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.puzzleImageBox.TabIndex = 1;
             this.puzzleImageBox.TabStop = false;
             // 
@@ -87,9 +87,9 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 283);
+            this.ClientSize = new System.Drawing.Size(485, 230);
             this.Controls.Add(this.indexTextBox);
             this.Controls.Add(this.puzzleIndexBar);
             this.Controls.Add(this.puzzleImageBox);
@@ -110,7 +110,7 @@
 
         private System.Windows.Forms.OpenFileDialog openRomDialog;
         private System.Windows.Forms.Button openRomButton;
-        private System.Windows.Forms.PictureBox puzzleImageBox;
+        private PixelPerfectPictureBox puzzleImageBox;
         private System.Windows.Forms.TrackBar puzzleIndexBar;
         private System.Windows.Forms.TextBox indexTextBox;
     }
