@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace MarioPicrossRipper
 {
@@ -6,26 +7,17 @@ namespace MarioPicrossRipper
     {
         public Bitmap PuzzleToBitmap(Picross puzzle)
         {
-            Bitmap bmp = new Bitmap(160, 150);
-            int index = 0;
-            Graphics g = Graphics.FromImage(bmp);
-            for (int y = 0; y < bmp.Height / 10; y++)
+            var bmp = new Bitmap(puzzle.Width, puzzle.Height);
+            var g = Graphics.FromImage(bmp);
+
+            for (var i = 0; i < puzzle.PuzzleData.Length; i++)
             {
-                for(int x = 0; x < bmp.Width / 10; x++)
-                {
-                    if(puzzle.PuzzleData[index] == 1)
-                    {
-                        //bmp.SetPixel(x, y, Color.Black);
-                        g.FillRectangle(Brushes.Black, x * 10, y * 10, 10, 10);
-                    }
-                    else
-                    {
-                        //bmp.SetPixel(x, y, Color.White);
-                        g.FillRectangle(Brushes.White, x * 10, y * 10, 10, 10);
-                    }
-                    index++;
-                }
+                var x = i % 16;
+                var y = i / 16;
+                var color = puzzle.PuzzleData[i] == 1 ? Brushes.Black : Brushes.White;
+                g.FillRectangle(color, x, y, 1, 1);
             }
+            
             return bmp;
         }
 
