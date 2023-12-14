@@ -30,11 +30,11 @@
         {
             this.openRomDialog = new System.Windows.Forms.OpenFileDialog();
             this.openRomButton = new System.Windows.Forms.Button();
-            this.puzzleImageBox = new PixelPerfectPictureBox();
             this.puzzleIndexBar = new System.Windows.Forms.TrackBar();
             this.indexTextBox = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.puzzleImageBox)).BeginInit();
+            this.puzzleImageBox = new MarioPicrossRipper.PixelPerfectPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.puzzleIndexBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.puzzleImageBox)).BeginInit();
             this.SuspendLayout();
             // 
             // openRomDialog
@@ -55,17 +55,6 @@
             this.openRomButton.UseVisualStyleBackColor = true;
             this.openRomButton.Click += new System.EventHandler(this.OpenRomButtonClick);
             // 
-            // puzzleImageBox
-            // 
-            this.puzzleImageBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.puzzleImageBox.Location = new System.Drawing.Point(9, 8);
-            this.puzzleImageBox.Margin = new System.Windows.Forms.Padding(2);
-            this.puzzleImageBox.Name = "puzzleImageBox";
-            this.puzzleImageBox.Size = new System.Drawing.Size(291, 267);
-            this.puzzleImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.puzzleImageBox.TabIndex = 1;
-            this.puzzleImageBox.TabStop = false;
-            // 
             // puzzleIndexBar
             // 
             this.puzzleIndexBar.Location = new System.Drawing.Point(321, 156);
@@ -85,11 +74,24 @@
             this.indexTextBox.Size = new System.Drawing.Size(74, 22);
             this.indexTextBox.TabIndex = 7;
             // 
+            // puzzleImageBox
+            // 
+            this.puzzleImageBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.puzzleImageBox.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+            this.puzzleImageBox.Location = new System.Drawing.Point(11, 11);
+            this.puzzleImageBox.Margin = new System.Windows.Forms.Padding(2);
+            this.puzzleImageBox.Name = "puzzleImageBox";
+            this.puzzleImageBox.OffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
+            this.puzzleImageBox.Size = new System.Drawing.Size(300, 300);
+            this.puzzleImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.puzzleImageBox.TabIndex = 1;
+            this.puzzleImageBox.TabStop = false;
+            // 
             // Form1
             // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(647, 283);
-            this.ClientSize = new System.Drawing.Size(485, 230);
+            this.ClientSize = new System.Drawing.Size(645, 322);
             this.Controls.Add(this.indexTextBox);
             this.Controls.Add(this.puzzleIndexBar);
             this.Controls.Add(this.puzzleImageBox);
@@ -99,8 +101,8 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "Mario\'s Picross Viewer";
-            ((System.ComponentModel.ISupportInitialize)(this.puzzleImageBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.puzzleIndexBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.puzzleImageBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
