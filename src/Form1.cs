@@ -55,7 +55,7 @@ namespace MarioPicrossRipper
             }
 
             DrawThePuzzle();
-
+            exportCurrentPuzzleButton.Enabled = true;
         }
 
         private void OpenRomButtonClick(object sender, EventArgs e)
@@ -93,5 +93,27 @@ namespace MarioPicrossRipper
             }
         }
 
+        private void ExportCurrentPuzzleButtonClick(object sender, EventArgs e)
+        {
+            saveSingleBitmapDialog.Filter = "PNG Files (*.png)|*.png";
+            saveSingleBitmapDialog.Title = "Save Current Puzzle Image";
+            saveSingleBitmapDialog.FilterIndex = 0;
+            saveSingleBitmapDialog.RestoreDirectory = true;
+            saveSingleBitmapDialog.FileName = puzzleIndexBar.Value.ToString() + ".png";
+
+            saveSingleBitmapDialog.ShowDialog();
+        }
+
+        private void SaveSingleBitmapDialogOk(object sender, CancelEventArgs e)
+        {
+            //just in case the file name doesn't have the *.png extension
+            string fileName = saveSingleBitmapDialog.FileName;
+            if (!fileName.Contains(".png"))
+            {
+                fileName = fileName + ".png";
+            }
+
+            puzzleImageBox.Image.Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
+        }
     }
 }

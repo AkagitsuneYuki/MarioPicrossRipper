@@ -32,7 +32,9 @@
             this.openRomButton = new System.Windows.Forms.Button();
             this.puzzleIndexBar = new System.Windows.Forms.TrackBar();
             this.indexTextBox = new System.Windows.Forms.TextBox();
+            this.exportCurrentPuzzleButton = new System.Windows.Forms.Button();
             this.puzzleImageBox = new MarioPicrossRipper.PixelPerfectPictureBox();
+            this.saveSingleBitmapDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.puzzleIndexBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.puzzleImageBox)).BeginInit();
             this.SuspendLayout();
@@ -74,6 +76,17 @@
             this.indexTextBox.Size = new System.Drawing.Size(74, 22);
             this.indexTextBox.TabIndex = 7;
             // 
+            // exportCurrentPuzzleButton
+            // 
+            this.exportCurrentPuzzleButton.Enabled = false;
+            this.exportCurrentPuzzleButton.Location = new System.Drawing.Point(363, 217);
+            this.exportCurrentPuzzleButton.Name = "exportCurrentPuzzleButton";
+            this.exportCurrentPuzzleButton.Size = new System.Drawing.Size(117, 49);
+            this.exportCurrentPuzzleButton.TabIndex = 8;
+            this.exportCurrentPuzzleButton.Text = "Export Current Puzzle";
+            this.exportCurrentPuzzleButton.UseVisualStyleBackColor = true;
+            this.exportCurrentPuzzleButton.Click += new System.EventHandler(this.ExportCurrentPuzzleButtonClick);
+            // 
             // puzzleImageBox
             // 
             this.puzzleImageBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -87,11 +100,16 @@
             this.puzzleImageBox.TabIndex = 1;
             this.puzzleImageBox.TabStop = false;
             // 
+            // saveSingleBitmapDialog
+            // 
+            this.saveSingleBitmapDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.SaveSingleBitmapDialogOk);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(645, 322);
+            this.Controls.Add(this.exportCurrentPuzzleButton);
             this.Controls.Add(this.indexTextBox);
             this.Controls.Add(this.puzzleIndexBar);
             this.Controls.Add(this.puzzleImageBox);
@@ -115,6 +133,8 @@
         private PixelPerfectPictureBox puzzleImageBox;
         private System.Windows.Forms.TrackBar puzzleIndexBar;
         private System.Windows.Forms.TextBox indexTextBox;
+        private System.Windows.Forms.Button exportCurrentPuzzleButton;
+        private System.Windows.Forms.SaveFileDialog saveSingleBitmapDialog;
     }
 }
 
