@@ -119,6 +119,7 @@
             this.exportAllPuzzlesButton.TabIndex = 9;
             this.exportAllPuzzlesButton.Text = "Export All Puzzles";
             this.exportAllPuzzlesButton.UseVisualStyleBackColor = true;
+            this.exportAllPuzzlesButton.Click += new System.EventHandler(this.ExportAllPuzzlesButtonClick);
             // 
             // Form1
             // 

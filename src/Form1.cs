@@ -107,19 +107,37 @@ namespace MarioPicrossRipper
 
         private void SaveSingleBitmapDialogOk(object sender, CancelEventArgs e)
         {
+            SaveSingleBitmap(puzzleImageBox.Image, saveSingleBitmapDialog.FileName);
+        }
+
+        private void SaveSingleBitmap(System.Drawing.Image img, string fileName)
+        {
             //just in case the file name doesn't have the *.png extension
-            string fileName = saveSingleBitmapDialog.FileName;
             if (!fileName.Contains(".png"))
             {
                 fileName = fileName + ".png";
             }
 
-            puzzleImageBox.Image.Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
+            img.Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
+        }
+
+        private void ExportAllPuzzlesButtonClick(object sender, EventArgs e)
+        {
+            saveAllBitmapsDialog.ShowDialog();
         }
 
         private void saveAllBitmapsDialog_HelpRequest(object sender, EventArgs e)
         {
-
+            ExportAllBitmaps(saveAllBitmapsDialog.SelectedPath);
         }
+
+        private void ExportAllBitmaps(string folderPath)
+        {
+            foreach(Picross puzzle in Program.puzzles)
+            {
+
+            }
+        }
+        
     }
 }
