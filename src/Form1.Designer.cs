@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.openRomDialog = new System.Windows.Forms.OpenFileDialog();
             this.openRomButton = new System.Windows.Forms.Button();
             this.puzzleIndexBar = new System.Windows.Forms.TrackBar();
             this.indexTextBox = new System.Windows.Forms.TextBox();
             this.exportCurrentPuzzleButton = new System.Windows.Forms.Button();
-            this.puzzleImageBox = new MarioPicrossRipper.PixelPerfectPictureBox();
             this.saveSingleBitmapDialog = new System.Windows.Forms.SaveFileDialog();
             this.saveAllBitmapsDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.exportAllPuzzlesButton = new System.Windows.Forms.Button();
+            this.puzzleImageBox = new MarioPicrossRipper.PixelPerfectPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.puzzleIndexBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.puzzleImageBox)).BeginInit();
             this.SuspendLayout();
@@ -89,19 +90,6 @@
             this.exportCurrentPuzzleButton.UseVisualStyleBackColor = true;
             this.exportCurrentPuzzleButton.Click += new System.EventHandler(this.ExportCurrentPuzzleButtonClick);
             // 
-            // puzzleImageBox
-            // 
-            this.puzzleImageBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.puzzleImageBox.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
-            this.puzzleImageBox.Location = new System.Drawing.Point(11, 11);
-            this.puzzleImageBox.Margin = new System.Windows.Forms.Padding(2);
-            this.puzzleImageBox.Name = "puzzleImageBox";
-            this.puzzleImageBox.OffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
-            this.puzzleImageBox.Size = new System.Drawing.Size(300, 300);
-            this.puzzleImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.puzzleImageBox.TabIndex = 1;
-            this.puzzleImageBox.TabStop = false;
-            // 
             // saveSingleBitmapDialog
             // 
             this.saveSingleBitmapDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.SaveSingleBitmapDialogOk);
@@ -121,11 +109,24 @@
             this.exportAllPuzzlesButton.UseVisualStyleBackColor = true;
             this.exportAllPuzzlesButton.Click += new System.EventHandler(this.ExportAllPuzzlesButtonClick);
             // 
+            // puzzleImageBox
+            // 
+            this.puzzleImageBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.puzzleImageBox.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+            this.puzzleImageBox.Location = new System.Drawing.Point(11, 11);
+            this.puzzleImageBox.Margin = new System.Windows.Forms.Padding(2);
+            this.puzzleImageBox.Name = "puzzleImageBox";
+            this.puzzleImageBox.OffsetMode = System.Drawing.Drawing2D.PixelOffsetMode.Half;
+            this.puzzleImageBox.Size = new System.Drawing.Size(300, 300);
+            this.puzzleImageBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.puzzleImageBox.TabIndex = 1;
+            this.puzzleImageBox.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(645, 322);
+            this.ClientSize = new System.Drawing.Size(642, 323);
             this.Controls.Add(this.exportAllPuzzlesButton);
             this.Controls.Add(this.exportCurrentPuzzleButton);
             this.Controls.Add(this.indexTextBox);
@@ -133,6 +134,7 @@
             this.Controls.Add(this.puzzleImageBox);
             this.Controls.Add(this.openRomButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "Form1";
