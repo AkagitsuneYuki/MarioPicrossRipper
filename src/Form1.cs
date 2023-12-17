@@ -10,7 +10,26 @@ namespace MarioPicrossRipper
         public MainForm()
         {
             InitializeComponent();
+            InitializeElements();   //inits various bits of data used by this form
+        }
+
+        private void InitializeElements()
+        {
+            //init the index text box to the index bar's value
             indexTextBox.Text = puzzleIndexBar.Value.ToString();
+
+            //init the open ROM dialog to its constant data
+            openRomDialog.Filter = "Gameboy ROMS (*.gb)|*.gb";
+            openRomDialog.Title = "Select Mario Picross ROM";
+            openRomDialog.FilterIndex = 0;
+            openRomDialog.RestoreDirectory = true;
+            openRomDialog.FileName = "";
+
+            //init the save single bitmap dialog to its constant data
+            saveSingleBitmapDialog.Filter = "PNG Files (*.png)|*.png";
+            saveSingleBitmapDialog.Title = "Save Current Puzzle Image";
+            saveSingleBitmapDialog.FilterIndex = 0;
+            saveSingleBitmapDialog.RestoreDirectory = true;
         }
 
         private void OpenRomDialogOk(object sender, CancelEventArgs e)
@@ -60,12 +79,6 @@ namespace MarioPicrossRipper
 
         private void OpenRomButtonClick(object sender, EventArgs e)
         {
-            openRomDialog.Filter = "Gameboy ROMS (*.gb)|*.gb";
-            openRomDialog.Title = "Select Mario Picross ROM";
-            openRomDialog.FilterIndex = 0;
-            openRomDialog.RestoreDirectory = true;
-            openRomDialog.FileName = "";
-
             openRomDialog.ShowDialog();
         }
 
@@ -95,10 +108,6 @@ namespace MarioPicrossRipper
 
         private void ExportCurrentPuzzleButtonClick(object sender, EventArgs e)
         {
-            saveSingleBitmapDialog.Filter = "PNG Files (*.png)|*.png";
-            saveSingleBitmapDialog.Title = "Save Current Puzzle Image";
-            saveSingleBitmapDialog.FilterIndex = 0;
-            saveSingleBitmapDialog.RestoreDirectory = true;
             saveSingleBitmapDialog.FileName = puzzleIndexBar.Value.ToString() + ".png";
 
             saveSingleBitmapDialog.ShowDialog();
