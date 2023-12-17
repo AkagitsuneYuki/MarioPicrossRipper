@@ -123,7 +123,11 @@ namespace MarioPicrossRipper
 
         private void ExportAllPuzzlesButtonClick(object sender, EventArgs e)
         {
-            saveAllBitmapsDialog.ShowDialog();
+            DialogResult result = saveAllBitmapsDialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                ExportAllBitmaps(saveAllBitmapsDialog.SelectedPath);
+            }
         }
 
         private void saveAllBitmapsDialog_HelpRequest(object sender, EventArgs e)
@@ -133,9 +137,12 @@ namespace MarioPicrossRipper
 
         private void ExportAllBitmaps(string folderPath)
         {
-            foreach(Picross puzzle in Program.puzzles)
-            {
+            PuzzleDrawer draw = new PuzzleDrawer();
 
+            for (int index = 0; index < Program.puzzles.Count; index++)
+            {
+                var img = draw.PuzzleToBitmap(Program.puzzles[index]);
+                SaveSingleBitmap(img, folderPath + "/" + index.ToString() + ".png");
             }
         }
         
