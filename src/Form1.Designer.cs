@@ -35,6 +35,8 @@
             this.exportCurrentPuzzleButton = new System.Windows.Forms.Button();
             this.puzzleImageBox = new MarioPicrossRipper.PixelPerfectPictureBox();
             this.saveSingleBitmapDialog = new System.Windows.Forms.SaveFileDialog();
+            this.saveAllBitmapsDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.exportAllPuzzlesButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.puzzleIndexBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.puzzleImageBox)).BeginInit();
             this.SuspendLayout();
@@ -104,11 +106,26 @@
             // 
             this.saveSingleBitmapDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.SaveSingleBitmapDialogOk);
             // 
+            // saveAllBitmapsDialog
+            // 
+            this.saveAllBitmapsDialog.HelpRequest += new System.EventHandler(this.saveAllBitmapsDialog_HelpRequest);
+            // 
+            // exportAllPuzzlesButton
+            // 
+            this.exportAllPuzzlesButton.Enabled = false;
+            this.exportAllPuzzlesButton.Location = new System.Drawing.Point(486, 217);
+            this.exportAllPuzzlesButton.Name = "exportAllPuzzlesButton";
+            this.exportAllPuzzlesButton.Size = new System.Drawing.Size(117, 49);
+            this.exportAllPuzzlesButton.TabIndex = 9;
+            this.exportAllPuzzlesButton.Text = "Export All Puzzles";
+            this.exportAllPuzzlesButton.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(645, 322);
+            this.Controls.Add(this.exportAllPuzzlesButton);
             this.Controls.Add(this.exportCurrentPuzzleButton);
             this.Controls.Add(this.indexTextBox);
             this.Controls.Add(this.puzzleIndexBar);
@@ -135,6 +152,8 @@
         private System.Windows.Forms.TextBox indexTextBox;
         private System.Windows.Forms.Button exportCurrentPuzzleButton;
         private System.Windows.Forms.SaveFileDialog saveSingleBitmapDialog;
+        private System.Windows.Forms.FolderBrowserDialog saveAllBitmapsDialog;
+        private System.Windows.Forms.Button exportAllPuzzlesButton;
     }
 }
 

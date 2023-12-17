@@ -56,6 +56,7 @@ namespace MarioPicrossRipper
 
             DrawThePuzzle();
             exportCurrentPuzzleButton.Enabled = true;
+            exportAllPuzzlesButton.Enabled = true;
         }
 
         private void OpenRomButtonClick(object sender, EventArgs e)
@@ -114,6 +115,11 @@ namespace MarioPicrossRipper
             }
 
             puzzleImageBox.Image.Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
+        }
+
+        private void saveAllBitmapsDialog_HelpRequest(object sender, EventArgs e)
+        {
+
         }
     }
 }
