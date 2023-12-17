@@ -13,25 +13,30 @@ namespace MarioPicrossRipper
         {
             get { return puzzleData; }
         }
+
         public byte Width
         {
             get { return width; }
         }
-
         public byte Height
         { 
             get { return height; }
         }
+
         public Picross(byte[] data)
         {
-            if(data.Length != 32)   //all picross puzzles must be 32 bytes
+            //various integrity checks
+            //these should never trigger in normal use unless the ROM is modified
+            if(data.Length != 32)
             {
-                throw new ArgumentException("Invalid size of data!");
+                throw new ArgumentException("Invalid size of data! Data block must be 32 bytes. Received block " + data.Length.ToString() + " byte(s)!");
             }
-
-            //index 30 is the width of the puzzle, it must be 5, 10, or 15
             if (!IsValidSize(data[30])){
-                throw new ArgumentException("Invalid picross dimensions!");
+                throw new ArgumentException("Invalid picross dimensions! Width and height must be 5, 10, or 15; but got " + data[30].ToString() + "!");
+            }
+            if(data[30] != data[31])
+            {
+                throw new ArgumentException("Invalid picross dimensions! Width and Height do not match!");
             }
 
             DecodePuzzle(data);
