@@ -1,6 +1,6 @@
 ﻿namespace MarioPicrossRipper
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.openRomDialog = new System.Windows.Forms.OpenFileDialog();
             this.openRomButton = new System.Windows.Forms.Button();
             this.puzzleIndexBar = new System.Windows.Forms.TrackBar();
@@ -122,7 +122,7 @@
             this.puzzleImageBox.TabIndex = 1;
             this.puzzleImageBox.TabStop = false;
             // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -137,7 +137,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Mario\'s Picross Viewer";
             ((System.ComponentModel.ISupportInitialize)(this.puzzleIndexBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.puzzleImageBox)).EndInit();

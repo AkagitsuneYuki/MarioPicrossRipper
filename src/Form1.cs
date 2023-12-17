@@ -5,9 +5,9 @@ using System.Windows.Forms;
 
 namespace MarioPicrossRipper
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
             indexTextBox.Text = puzzleIndexBar.Value.ToString();
@@ -24,7 +24,6 @@ namespace MarioPicrossRipper
                 {
                     MessageBox.Show("This file doesn't match with the original ROM!\nPlease make sure the file isn't corrupted.","Error!");
                     return;
-                    //throw new Exception("Header doesn't match!");
                 }
             }
 
@@ -48,7 +47,7 @@ namespace MarioPicrossRipper
                 }
                 catch(Exception ex)
                 {
-                    //do stuff here
+                    MessageBox.Show(ex.Message);
                 }
 
                 offset += 32;
@@ -89,7 +88,7 @@ namespace MarioPicrossRipper
                 }
                 catch (Exception ex)
                 {
-                    //MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
@@ -110,17 +109,6 @@ namespace MarioPicrossRipper
             SaveSingleBitmap(puzzleImageBox.Image, saveSingleBitmapDialog.FileName);
         }
 
-        private void SaveSingleBitmap(System.Drawing.Image img, string fileName)
-        {
-            //just in case the file name doesn't have the *.png extension
-            if (!fileName.Contains(".png"))
-            {
-                fileName = fileName + ".png";
-            }
-
-            img.Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
-        }
-
         private void ExportAllPuzzlesButtonClick(object sender, EventArgs e)
         {
             DialogResult result = saveAllBitmapsDialog.ShowDialog();
@@ -133,6 +121,17 @@ namespace MarioPicrossRipper
         private void saveAllBitmapsDialog_HelpRequest(object sender, EventArgs e)
         {
             ExportAllBitmaps(saveAllBitmapsDialog.SelectedPath);
+        }
+
+        private void SaveSingleBitmap(System.Drawing.Image img, string fileName)
+        {
+            //just in case the file name doesn't have the *.png extension
+            if (!fileName.Contains(".png"))
+            {
+                fileName = fileName + ".png";
+            }
+
+            img.Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
         }
 
         private void ExportAllBitmaps(string folderPath)
