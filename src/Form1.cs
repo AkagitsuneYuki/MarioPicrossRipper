@@ -93,6 +93,9 @@ namespace MarioPicrossRipper
         /// <summary>
         /// Takes the ROM as a byte array and gets only the bytes needed for integrity verification.
         /// </summary>
+        /// <param name="rom">The ROM to get the reference data from</param>
+        /// <returns>The first 37,552 bytes of the ROM.</returns>
+        /// <exception cref="Exception">Thrown when the ROM is smaller than expected.</exception>
         private byte[] GetReferenceDataFromROM(byte[] rom)
         {
             //There are 37,552 bytes before the puzzle data
@@ -114,6 +117,11 @@ namespace MarioPicrossRipper
             return output;
         }
 
+        /// <summary>
+        /// Takes a byte array and returns its SHA1 hash (uppercase).
+        /// </summary>
+        /// <param name="data">The data to get the hash from.</param>
+        /// <returns>The SHA1 hash of the byte array.</returns>
         private string GetHash(byte[] data)
         {
             using(HashAlgorithm hashAlgorithm = new SHA1CryptoServiceProvider())
@@ -134,6 +142,9 @@ namespace MarioPicrossRipper
             DrawThePuzzle();
         }
 
+        /// <summary>
+        /// This function gets the current selected puzzle and draws it to the image box.
+        /// </summary>
         private void DrawThePuzzle()
         {
             if(Program.puzzles.Count != 0)
@@ -155,7 +166,6 @@ namespace MarioPicrossRipper
         private void ExportCurrentPuzzleButtonClick(object sender, EventArgs e)
         {
             saveSingleBitmapDialog.FileName = puzzleIndexBar.Value.ToString() + ".png";
-
             saveSingleBitmapDialog.ShowDialog();
         }
 
@@ -178,6 +188,11 @@ namespace MarioPicrossRipper
             ExportAllBitmaps(saveAllBitmapsDialog.SelectedPath);
         }
 
+        /// <summary>
+        /// Saves a single puzzle converted to a bitmap as a .PNG file.
+        /// </summary>
+        /// <param name="img">The image needed to be saved.</param>
+        /// <param name="fileName">The name for the image when saving.</param>
         private void SaveSingleBitmap(System.Drawing.Image img, string fileName)
         {
             //just in case the file name doesn't have the *.png extension
@@ -189,6 +204,10 @@ namespace MarioPicrossRipper
             img.Save(fileName, System.Drawing.Imaging.ImageFormat.Png);
         }
 
+        /// <summary>
+        /// Takes all of the puzzles, converts them to images, and saves them to a given folder.
+        /// </summary>
+        /// <param name="folderPath">The folder to save all of the images to.</param>
         private void ExportAllBitmaps(string folderPath)
         {
             PuzzleDrawer draw = new PuzzleDrawer();
