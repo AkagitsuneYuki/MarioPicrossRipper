@@ -2,11 +2,15 @@
 using System.IO;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 
 namespace MarioPicrossRipper
 {
     public partial class MainForm : Form
     {
+
+        const string referenceHash = "E5B6B21E9344E5CD87CFA1EBB89546351D9ACE88";    //the hash of all the bytes before the puzzle data in ROM
+
         public MainForm()
         {
             InitializeComponent();
@@ -35,46 +39,88 @@ namespace MarioPicrossRipper
         private void OpenRomDialogOk(object sender, CancelEventArgs e)
         {
             byte[] buffer = File.ReadAllBytes(openRomDialog.FileName);
-            byte[] refrenceData = { 0xF3, 0xC3, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0xF0, 0x40, 0xCB, 0x7F, 0xC8, 0x21, 0x39, 0xC3 };
 
-            for(int i = 0; i < refrenceData.Length; i++)
+            byte[] refData;
+            try
             {
-                if(refrenceData[i] != buffer[i])
-                {
-                    MessageBox.Show("This file doesn't match with the original ROM!\nPlease make sure the file isn't corrupted.","Error!");
-                    return;
-                }
+                refData = GetReferenceDataFromROM(buffer);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return; //not sure if needed but whatever
             }
 
-            Program.puzzles.Clear();
-
-            int offset = 0x92b0;    //this is where in the file the puzzles begin
-            //last one is at 0xb2b0
-
-            for(int puzzleIndex = 0; puzzleIndex < 257; puzzleIndex++)
+            if(GetHash(refData) == referenceHash)
             {
-                byte[] data = new byte[32];
+                Program.puzzles.Clear();
 
-                for(int i = 0; i < 32; i++)
+                int offset = 0x92b0;    //this is where in the file the puzzles begin
+                                        //last one is at 0xb2b0
+
+                for (int puzzleIndex = 0; puzzleIndex < 257; puzzleIndex++)
                 {
-                    data[i] = (byte)(buffer[offset + i]);
+                    byte[] data = new byte[32];
+
+                    for (int i = 0; i < 32; i++)
+                    {
+                        data[i] = (byte)(buffer[offset + i]);
+                    }
+
+                    try
+                    {
+                        Program.puzzles.Add(new Picross(data));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                    offset += 32;
                 }
 
-                try
-                {
-                    Program.puzzles.Add(new Picross(data));
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+                DrawThePuzzle();
+                exportCurrentPuzzleButton.Enabled = true;
+                exportAllPuzzlesButton.Enabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Invalid ROM!\nMake sure the correct ROM was selected,\nor that your ROM isn't corrupt!\nIf you see this with a clean ROM, report it on GitHub.");
+            }
+            
+        }
 
-                offset += 32;
+        /// <summary>
+        /// Takes the ROM as a byte array and gets only the bytes needed for integrity verification.
+        /// </summary>
+        private byte[] GetReferenceDataFromROM(byte[] rom)
+        {
+            //There are 37,552 bytes before the puzzle data
+            //We only need to check these bytes as the puzzle decoder skips any puzzle that has invalid data.
+            byte[] output = new byte[37552];
+
+            if(rom.Length >= output.Length)
+            {
+                for(int i = 0; i< output.Length; i++)
+                {
+                    output[i] = (byte)(rom[i] & 0xFF);
+                }
+            }
+            else
+            {
+                throw new Exception("ROM is smaller than expected size!");
             }
 
-            DrawThePuzzle();
-            exportCurrentPuzzleButton.Enabled = true;
-            exportAllPuzzlesButton.Enabled = true;
+            return output;
+        }
+
+        private string GetHash(byte[] data)
+        {
+            using(HashAlgorithm hashAlgorithm = new SHA1CryptoServiceProvider())
+            {
+                byte[] hashBytes = hashAlgorithm.ComputeHash(data);
+                return BitConverter.ToString(hashBytes).Replace("-", string.Empty);
+            }
         }
 
         private void OpenRomButtonClick(object sender, EventArgs e)
