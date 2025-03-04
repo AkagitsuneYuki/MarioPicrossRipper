@@ -44,14 +44,9 @@ namespace MarioPicrossRipper
 
         private bool IsValidSize(int size)
         {
-            if(size % 5 == 0)
+            if(size == 5 || size == 10 || size == 15)
             {
-                int divisor = size / 5;
-
-                if (divisor >= 1 && divisor <= 3)
-                {
-                    return true;
-                }
+                return true;
             }
             return false;
         }

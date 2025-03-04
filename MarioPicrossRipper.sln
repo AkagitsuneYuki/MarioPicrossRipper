@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarioPicrossRipper", "MarioPicrossRipper.csproj", "{DCB76F61-8FB7-4802-9E69-2D2E86DBCB5A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCB76F61-8FB7-4802-9E69-2D2E86DBCB5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCB76F61-8FB7-4802-9E69-2D2E86DBCB5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCB76F61-8FB7-4802-9E69-2D2E86DBCB5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCB76F61-8FB7-4802-9E69-2D2E86DBCB5A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21CDAD39-4B85-4D19-8B49-6E894837380B}
+	EndGlobalSection
+EndGlobal
